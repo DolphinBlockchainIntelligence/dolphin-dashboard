@@ -17,31 +17,31 @@ class App extends Component {
   render() {
     const listItems = this.state.widgets.map((item) =>
       <div key={item.title.split(' ').join('')} data-grid={{x: item.x, y: item.y, w: item.w, h: item.h}}>
-        <iframe title={item.i} src={'https://cloud.petrusenko.pro/apps/'+item.url} width="100%" height="100%">{item.title}</iframe>
+        <div className="widget-mask"></div>
+        <iframe className="widget-iframe" title={item.i} src={'https://cloud.petrusenko.pro/apps/'+item.url} width="100%" height="100%">{item.title}</iframe>
       </div>
     );
     return (
       <div>
-        <ReactGridLayout className="layout" cols={12} rowHeight={30} width={1200} margin={[30,30]}>
+        <ReactGridLayout className="layout" cols={12} rowHeight={30} width={1200} margin={[10,10]}>
           {listItems}
         </ReactGridLayout>
       </div>
     );
   }
   componentWillMount() {
-    axios.get('https://cloud.petrusenko.pro/dashboard/apps', {
-    // axios.get('http://localhost:5000/dns.json', {
+    // axios.get('https://cloud.petrusenko.pro/dashboard/apps', {
+    axios.get('http://178.218.115.169:5000/dns.json', {
     }).then((response) => {
       var widgets = response.data.widgets;
-      var y = 0;
       widgets.forEach(function(item, i){
-        item.x = 0
-        item.y = 0
-        item.w = 12
-        item.h = 10
-        item.name = item.title.split(' ').join('')
-        item.i = i.toString()
-        y+=10
+        item.x = 0;
+        item.y = 0;
+        item.w = 6;
+        item.h = 10;
+        item.name = item.title.split(' ').join('');
+        item.i = i.toString();
+        item.y = i*10;
       });
       this.setState({widgets: widgets});
     }, (err) => {

@@ -1,9 +1,11 @@
 {
   "name": "dolphin-dashboard",
+  "homepage": "/dashboard/",
   "version": "0.0.1",
   "private": true,
   "dependencies": {
     "axios": "^0.16.2",
+    "cross-env": "^5.0.5",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-grid-layout": "^0.14.7",
@@ -12,7 +14,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "cross-env PUBLIC_URL=/dashboard/ react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
